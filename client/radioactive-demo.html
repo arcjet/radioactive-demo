@@ -1,0 +1,54 @@
+<template name="radioactiveDemo">
+  <h2>Some Radioactive Elements</h2>
+
+  <h3>Filter by:</h3>
+  <select class="filter-by-type" data-filter-by-type="type">
+    <option>All</option>
+    <option>Transition Metal</option>
+    <option>Metalloid</option>
+    <option>Noble Gas</option>
+    <option>Alkali Metal</option>
+    <option>Alkali Earth Metal</option>
+    <option>Rare Earth Metal</option>
+  </select>
+
+  <h3>Toggle Sort by:</h3>
+  <ul>
+    <li><button data-sort-by="name" class="sort-by sort-by-name">Name</button></li>
+    <li><button data-sort-by="symbol" class="sort-by sort-by-symbol">Symbol</button></li>
+    <li><button data-sort-by="weight" class="sort-by sort-by-weight">Weight</button></li>
+  </ul>
+
+  <h3>Toggle Sort direction:</h3>
+  <ul>
+    <li><button data-sort-ascending="name" class="sort-ascending sort-ascending-name">Name</button></li>
+    <li><button data-sort-ascending="symbol" class="sort-ascending sort-ascending-symbol">Symbol</button></li>
+    <li><button data-sort-ascending="weight" class="sort-ascending sort-ascending-weight">Weight</button></li>
+  </ul>
+
+  <div class="collection row">
+    {{> radioactive
+      items=items
+      template="item"
+      parentClass="collection"
+      childClass="collection-item"
+      percentPosition="true"
+      filter=filter
+      sortBy=sortBy
+      sortAscending=sortAscending
+      parseInts="weight"
+    }}
+  </div>
+  <div class="collection-sizer"></div>
+</template>
+
+<template name="item">
+  <i>{{type}}</i><br>
+  <b>{{name}}</b><br>
+  <h2>{{symbol}}</h2>
+  {{weight}}
+</template>
+
+<body>
+  {{> radioactiveDemo}}
+</body>
